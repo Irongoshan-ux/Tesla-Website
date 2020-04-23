@@ -1,0 +1,13 @@
+﻿<img src="/Content/images/Form.png" alt="Форма" />
+<form onsubmit="return false" action="/Home/Form" method="POST">
+    <fieldset>
+        <legend>Оформление заказа</legend>
+        <input type="text" name="Name" placeholder="Введите ваше имя" required /><br />
+        <input type="tel" name="Tel" placeholder="8-(xxx)-(xxx)-(xxxx)" required pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{4}" /><br />
+        <select name="Car">
+            @Html.Action("FormOptions", "Home", new { item_id = ViewBag.Item })
+        </select><br />
+        <input type="submit" value="Оформить заказ"/>
+    </fieldset>
+</form>
+

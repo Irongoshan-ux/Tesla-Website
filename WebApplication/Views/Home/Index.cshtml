@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication.Models.Car>
+@{
+    Layout = "/Views/MasterView.cshtml";
+}
+<table>
+    <tr>
+        <th id="main_title" colspan="3">
+            <h1>Главная</h1>
+        </th>
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if (item.Id <= 2)
+            {
+                <td class="small_card">
+                    <img src="@item.Preview" alt="@item.Title" />
+                    <div class="content">
+                        <small>@item.Type</small>
+                        <h2>@item.Title</h2>
+                        <p>@item.Description</p>
+                        <h5>Цена: $@item.Price</h5>
+                        <h5>В наличии: @item.Count автомобилей</h5>
+                        <a href="@Url.Action("CarPage", "Home", new { item_id = item.Id })" title="@item.Title">Перейти</a>
+                    </div>
+                </td>
+            }
+            else
+            {
+                continue;
+            }
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if (item.Id > 2)
+            {
+                <td class="small_card">
+                    <img src="@item.Preview" alt="@item.Title" />
+                    <div class="content">
+                        <small>@item.Type</small>
+                        <h2>@item.Title</h2>
+                        <p>@item.Description</p>
+                        <h5>Цена: $@item.Price</h5>
+                        <h5>В наличии: @item.Count автомобилей</h5>
+                        <a href="@Url.Action("CarPage", "Home", new { item_id = item.Id })" title="@item.Title">Перейти</a>
+                    </div>
+                </td>
+            }
+        }
+    </tr>
+</table>
+@section Form
+{
+    <div class="form_block big_card">
+        @Html.Action("Form", "Home")
+    </div>
+}

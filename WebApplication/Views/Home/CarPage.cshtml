@@ -1,0 +1,33 @@
+﻿@model WebApplication.Models.Car
+@{
+    Layout = "/Views/MasterView.cshtml";
+}
+<table>
+    <tr>
+        <th id="main_title" colspan="3">
+            <h1>@Model.Title</h1>
+        </th>
+    </tr>
+    <tr class="big_pic">
+        <td colspan="3">
+            <img id="preview" src="@Model.Preview" alt="Превью" /></td>
+    </tr>
+    <tr class="small_pic">
+        <td>
+            <img onclick="SetImg(this.src)" src="@Model.SubPreview.Split(',')[0]" alt="Перед" /></td>
+        <td>
+            <img onclick="SetImg(this.src)" src="@Model.SubPreview.Split(',')[1]" alt="Бок" /></td>
+        <td>
+            <img onclick="SetImg(this.src)" src="@Model.SubPreview.Split(',')[2]" alt="Салон" /></td>
+    </tr>
+    <tr class="info">
+        <td colspan="3"><h2>Цена: $@Model.Price</h2>
+        <h2>Количество: @Model.Count автомобилей</h2></td>
+    </tr>
+</table>
+@section Form
+{
+<div class="form_block big_card">
+    @Html.Action("Form", "Home", new { item_id = Model.Id })
+</div>
+}
