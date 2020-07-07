@@ -31,8 +31,8 @@ namespace WebApplication.Controllers
             }
             return View(Item);
         }
-
-        [ChildActionOnly]
+        
+        [ChildActionOnly] 
         public ActionResult Navigation()
         {
             var Items = dataBase.Cars;
@@ -74,7 +74,8 @@ namespace WebApplication.Controllers
         [HttpPost]
         public string Form(string Name, string Tel, int Car)
         {
-            if (dataBase.Cars.FirstOrDefault(x => x.Id == Car).Count > 0)
+            var car = dataBase.Cars.FirstOrDefault(x => x.Id == Car);
+            if (car.Count > 0)
             {
                 Order order = new Order
                 {
@@ -97,13 +98,13 @@ namespace WebApplication.Controllers
 
                 dataBase.Orders.Add(order);
 
-                dataBase.Cars.FirstOrDefault(x => x.Id == Car).Count--;
+                car.Count--;
 
                 dataBase.SaveChanges();
 
-                return $"{order.UserName}, Ваша заявка на автомобиль {dataBase.Cars.FirstOrDefault(x => x.Id == Car).Title} была принята. Спасибо за заказ.";
+                return $"{order.UserName}, Ваша заявка на автомобиль {car.Title} была принята. Спасибо за заказ.";
             }
-            else return $"Извините, автомобиль {dataBase.Cars.FirstOrDefault(x => x.Id == Car).Title} недоступен, так как автомобили данной модели были распроданы";
+            else return $"Извините, автомобиль {car.Title} недоступен, так как автомобили данной модели были распроданы";
         }
     }
 }

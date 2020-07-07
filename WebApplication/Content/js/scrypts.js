@@ -1,4 +1,4 @@
-//<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 function SetImg(selected_url) {
     var item = document.getElementById('preview');
@@ -41,6 +41,6 @@ $(document).on('submit', 'form', function () {
         }
     }
     else {
-        alert('Вы забыли указать имя.')
+        alert("Вы забыли указать имя.")
     }
 });
